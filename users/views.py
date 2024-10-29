@@ -9,7 +9,7 @@ from django.contrib import messages
 def user(request):
     return render(request, "users/user.html") #send the user.html to user when they visit the view
 
-def login_view(request):
+def login_view(request): 
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]

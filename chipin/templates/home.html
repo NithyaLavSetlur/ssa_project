@@ -2,14 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome Page</title>
+    <title>ChipIn Homepage</title>
     <link rel="stylesheet" href="{% static 'chipin/styles.css' %}">
 </head>
 <body>
     <div class="header">
+        <div class="logo">
+            <img src="{% static 'chipin/logo_90.jpg' %}" alt="Logo">
+        </div>
         <div class="user-info">
             <span>{{ request.user.username }}</span>
-            <form action="{% url 'users:logout' %}" method="post">
+            <form action="{% url 'users:logout' %}" method="post" style="margin: 0; margin-left: 20px;">
                 {% csrf_token %}
                 <button type="submit">Log out</button>
             </form>
@@ -22,8 +25,5 @@
         {% endfor %}
         </ul>
     {% endif %}
-    <h1>Welcome, {{ request.user.first_name }}</h1>
-    <p>Username: {{ request.user.username }}</p>
-    <a href="{% url 'chipin:home' %}">ChipIn Homepage</a>
 </body>
 </html>
