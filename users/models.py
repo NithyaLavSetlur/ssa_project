@@ -23,7 +23,7 @@ def validate_unique_nickname(nickname, instance=None):
         if Profile.objects.filter(nickname=nickname).exists():
             raise ValidationError(f"Nickname '{nickname}' is already taken.")
 
-class Profile(models.Model):
+class Profile(models.Model): # Model for the Profile Class
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     surname = models.CharField(max_length=30)
