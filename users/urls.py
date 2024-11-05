@@ -1,5 +1,6 @@
 from django.urls import path, include
 from . import views #allows us to connect to views.py through path
+from django.contrib.auth import views as auth_views
 from two_factor.urls import urlpatterns as tf_urls
 
 urlpatterns = [ #this block creates paths to the login and logout views

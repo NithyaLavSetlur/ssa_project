@@ -10,6 +10,7 @@ from .forms import GroupCreationForm
 from .models import Group
 import urllib.parse
 
+#this is not protected
 def home(request):
     return render(request, "chipin/home.html")
 
