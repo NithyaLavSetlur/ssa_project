@@ -14,8 +14,8 @@ import urllib.parse
 def home(request):
     return render(request, "chipin/home.html")
 
-@login_required
-def create_group(request):
+@login_required # login is required to perform action
+def create_group(request): #create a new group
     if request.method == 'POST':
         form = GroupCreationForm(request.POST, user=request.user)
         if form.is_valid():
@@ -27,12 +27,12 @@ def create_group(request):
     return render(request, 'chipin/create_group.html', {'form': form})
 
 @login_required
-def group_detail(request, group_id):
+def group_detail(request, group_id): # display the details of a certain group
     group = get_object_or_404(Group, id=group_id)
     return render(request, 'chipin/group_detail.html', {'group': group})
 
 @login_required
-def delete_group(request, group_id):
+def delete_group(request, group_id): # delete a certain group
     group = get_object_or_404(Group, id=group_id)
     if request.user == group.admin:
         group.delete()
@@ -42,7 +42,7 @@ def delete_group(request, group_id):
     return redirect('chipin:home')
 
 @login_required
-def invite_users(request, group_id):
+def invite_users(request, group_id): # invite users to join group (using MailGun would pose security risks)
     group = get_object_or_404(Group, id=group_id)
     users_not_in_group = User.objects.exclude(id__in=group.members.values_list('id', flat=True))
     if request.method == 'POST':
