@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from users.models import Profile
+
+def user_profile(request):
+    if request.user.is_authenticated:
+        try:
+            return {'nickname': request.user.profile.nickname}
+        except Profile.DoesNotExist:
+            return {'nickname': request.user.username}  # Fallback to username if no profile exists
+    return {}
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
