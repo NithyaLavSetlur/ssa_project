@@ -7,4 +7,5 @@ urlpatterns = [
    path('group/<int:group_id>/', views.group_detail, name='group_detail'),
    path('group/<int:group_id>/invite/', views.invite_users, name='invite_users'),
    path('group/<int:group_id>/delete/', views.delete_group, name='delete_group'),
+   path('accept-invite/<int:group_id>/', views.accept_invite, name='accept_invite'),
 ]
